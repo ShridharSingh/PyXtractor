@@ -19,6 +19,7 @@ def rake():
     text = open("text.txt", "r")
     input_text = text.read()
 
+    #remove anomalies from text
     r = Rake(punctuations=['.','`','/','\'','~','-','=','"',',',':',';','+','.,',',.',
                            '(',')','[',']','{','}',').','),','].','],','}.','}.','~/','/~',
                            '1','2','3','4','5','6','7','8','9','0',
@@ -56,6 +57,7 @@ def rake():
     for k,v in top10:
         top10_most_occured_words.append(v)
     
+    #print or export to json : print(top10_most_occured_words)
     export_to_json(top10_most_occured_words)
 
 def export_to_json(top10_input_array):
@@ -77,4 +79,5 @@ def export_to_json(top10_input_array):
         outfile.write(json_object)
 
 if __name__ == '__main__':
-    extracted_text = extract_text_from_pdf('sample.pdf')
+    pdfname = input("Enter name of pdf you want to extract keywords from: ")
+    extracted_text = extract_text_from_pdf(pdfname)
